@@ -174,9 +174,6 @@ For detailed deployment instructions, see [PythonAnywhere Flask Guide](https://h
 
 ---
 
-
----
-
 ## 🤝 Contributing
 
 Contributions make the open-source community an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
