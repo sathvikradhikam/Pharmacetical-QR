@@ -138,7 +138,8 @@ Flask Web Application (PythonAnywhere)
 │ - tablets.db                  │
 └───────────────────────────────┘
 ```
-📂 Project Structure
+---
+## 📂 Project Structure
 Pharmacetical-QR/
 
 ├── app.py                 # Main Flask application
@@ -152,49 +153,71 @@ Pharmacetical-QR/
 ├── tablets.db             # SQLite database (auto-generated)
 
 └── README.md              # Project documentation
-
-🌐 Deployment
-This project is deployed on PythonAnywhere and accessible worldwide at:
-🔗 https://viki916.pythonanywhere.com
-Deploy Your Own
-
-Create a free account on PythonAnywhere
-Upload project files to /home/yourusername/mysite/
-Install dependencies: pip3.11 install --user -r requirements.txt
-Configure WSGI file to point to your app.py
-Reload the web app
-
-For detailed deployment instructions, see PythonAnywhere Flask Guide https://help.pythonanywhere.com/pages/Flask/.
-
-🤝 Contributing
-Contributions make the open-source community an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
-
-Fork the Project
-Create your Feature Branch (git checkout -b feature/AmazingFeature)
-Commit your Changes (git commit -m 'Add some AmazingFeature')
-Push to the Branch (git push origin feature/AmazingFeature)
-Open a Pull Request
+---
 
 
-📄 License
-Distributed under the MIT License. See LICENSE for more information.
+## 🌐 Deployment
 
-👨‍💻 Author
-Sathvik Radhikam
+This project is deployed on **PythonAnywhere** and accessible worldwide at:
 
-GitHub: @sathvikradhikam
-Project Link: https://github.com/sathvikradhikam/Pharmacetical-QR
+🔗 **[https://viki916.pythonanywhere.com](https://viki916.pythonanywhere.com)**
+
+### Deploy Your Own
+
+1. Create a free account on [PythonAnywhere](https://www.pythonanywhere.com)
+2. Upload project files to `/home/yourusername/mysite/`
+3. Install dependencies: `pip3.11 install --user -r requirements.txt`
+4. Configure WSGI file to point to your `app.py`
+5. Reload the web app
+
+For detailed deployment instructions, see [PythonAnywhere Flask Guide](https://help.pythonanywhere.com/pages/Flask/).
+
+---
 
 
-🙏 Acknowledgments
+---
 
-Flask Documentation
-Python QRCode Library
-PythonAnywhere Hosting
-Shields.io for badges
-Best README Template
+## 🤝 Contributing
 
+Contributions make the open-source community an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+
+## 👨‍💻 Author
+
+**Sathvik Radhikam**
+
+- GitHub: [@sathvikradhikam](https://github.com/sathvikradhikam)
+- Project Link: [https://github.com/sathvikradhikam/Pharmacetical-QR](https://github.com/sathvikradhikam/Pharmacetical-QR)
+
+---
+
+## 🙏 Acknowledgments
+
+- [Flask Documentation](https://flask.palletsprojects.com/)
+- [Python QRCode Library](https://github.com/lincolnloop/python-qrcode)
+- [PythonAnywhere Hosting](https://www.pythonanywhere.com/)
+- [Shields.io](https://shields.io/) for badges
+- [Best README Template](https://github.com/othneildrew/Best-README-Template)
+
+---
+
+<div align="center">
 
 Made with ❤️ for better healthcare
-⬆ Back to Top
+
+**[⬆ Back to Top](#-pharmaceutical-qr-code-system)**
+
+</div>
