@@ -87,57 +87,41 @@ python app.py
 ```
 http://localhost:5000
 ```
-💡 Usage
-Creating QR Codes
+## 💡 Usage
 
-Navigate to the home page
-Fill in the tablet information form:
-Tablet Name
-Manufacturer
-Batch Number
-Manufacturing & Expiry Dates
-Composition & Dosage
-Medical Uses
-Side Effects (optional)
-Precautions (optional)
-Storage Instructions (optional)
+### Creating QR Codes
+1. Navigate to the home page  
+2. Fill in the tablet information:
+   - Tablet Name
+   - Manufacturer
+   - Batch Number
+   - Manufacturing & Expiry Dates
+   - Composition & Dosage
+   - Medical Uses
+   - Side Effects *(optional)*
+   - Precautions *(optional)*
+   - Storage Instructions *(optional)*
+3. Click **"Create Tablet & Generate QR Code"**
+4. Download the high-resolution QR code (PNG)
+5. Print and stick it on strips, bottles, or blister packs
 
-Click "Create Tablet & Generate QR Code"
-Download the generated QR code
-Print and attach to tablet packaging
+### Scanning QR Codes
+1. Open any QR scanner or phone camera app
+2. Point at the QR code
+3. Tap the notification/link
+4. Instantly view full medicine details – even without the original box!
 
-Scanning QR Codes
+---
 
-Use any QR code scanner app on your smartphone
-Point camera at the QR code
-Tap the notification to open the link
-View complete medication information instantly
+## 🏗️ Project Architecture
 
-🏗️ Project Architecture
-User Device (Browser)
-↓
-Flask Web Application (PythonAnywhere)
-↓
-┌───────────────────────────────┐
-│ Routes & API Endpoints        │
-│ - / (Home)                    │
-│ - /api/tablets (POST)         │
-│ - /api/qrcode/<id>            │
-│ - /info/<id>                  │
-└───────────────────────────────┘
-↓
-┌───────────────────────────────┐
-│ Business Logic                │
-│ - Form validation             │
-│ - QR code generation          │
-│ - Data retrieval              │
-└───────────────────────────────┘
-↓
-┌───────────────────────────────┐
-│ SQLite Database               │
-│ - tablets.db                  │
-└───────────────────────────────┘
-
+```mermaid
+graph TD
+    A[User Device<br/>(Browser / Phone)] --> B[Flask Web App<br/>(PythonAnywhere)]
+    B --> C[Routes & Endpoints<br/>• / (Home)<br/>• POST /create<br/>• /qrcode/<id><br/>• /info/<id>]
+    C --> D[Business Logic<br/>• Form Validation<br/>• QR Generation<br/>• Data Storage/Retrieval]
+    D --> E[SQLite Database<br/>tablets.db]
+```
 📂 Project Structure
 Pharmacetical-QR/
 ├── app.py                 # Main Flask application
