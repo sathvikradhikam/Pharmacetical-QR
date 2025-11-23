@@ -73,7 +73,7 @@ pip install -r requirements.txt
 
 # 4. Run
 python app.py
-
+```
 
 
 Live Demo
