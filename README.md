@@ -112,7 +112,8 @@ http://localhost:5000
 4. Instantly view full medicine details – even without the original box!
 
 ---
-
+## 🏗️ Project Architecture
+```
 User Device (Browser)
 ↓
 Flask Web Application (PythonAnywhere)
@@ -136,14 +137,20 @@ Flask Web Application (PythonAnywhere)
 │ SQLite Database               │
 │ - tablets.db                  │
 └───────────────────────────────┘
-
+```
 📂 Project Structure
 Pharmacetical-QR/
+
 ├── app.py                 # Main Flask application
+
 ├── requirements.txt       # Python dependencies
+
 ├── runtime.txt            # Python version for deployment
+
 ├── Procfile               # Deployment configuration
+
 ├── tablets.db             # SQLite database (auto-generated)
+
 └── README.md              # Project documentation
 
 🌐 Deployment
