@@ -1,0 +1,344 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmaceutical QR Code Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 600px;
+        }
+        
+        .form-section, .qr-section {
+            padding: 30px;
+        }
+        
+        .form-section {
+            border-right: 1px solid #eee;
+        }
+        
+        .section-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .form-group textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .qr-display {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .qr-code {
+            max-width: 250px;
+            border: 3px solid #667eea;
+            border-radius: 10px;
+            padding: 10px;
+            background: white;
+        }
+        
+        .tablet-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #dc3545;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-section {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 Pharmaceutical QR Code Manager</h1>
+            <p>Create and manage QR codes for tablet information</p>
+        </div>
+        
+        <div class="content">
+            <div class="form-section">
+                <h2 class="section-title">Add New Tablet</h2>
+                
+                <div id="messages"></div>
+                
+                <form id="tabletForm">
+                    <div class="form-group">
+                        <label for="name">Tablet Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="manufacturer">Manufacturer *</label>
+                        <input type="text" id="manufacturer" name="manufacturer" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="batch_number">Batch Number *</label>
+                        <input type="text" id="batch_number" name="batch_number" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="mfg_date">Manufacturing Date *</label>
+                            <input type="date" id="mfg_date" name="mfg_date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="expiry_date">Expiry Date *</label>
+                            <input type="date" id="expiry_date" name="expiry_date" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="composition">Composition *</label>
+                        <textarea id="composition" name="composition" placeholder="Active ingredients and their quantities" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dosage">Dosage *</label>
+                        <input type="text" id="dosage" name="dosage" placeholder="e.g., 500mg twice daily" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="use_cases">Medical Uses *</label>
+                        <textarea id="use_cases" name="use_cases" placeholder="Conditions this medication treats" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="side_effects">Side Effects</label>
+                        <textarea id="side_effects" name="side_effects" placeholder="Common side effects"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="precautions">Precautions</label>
+                        <textarea id="precautions" name="precautions" placeholder="Important precautions and warnings"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="storage_instructions">Storage Instructions</label>
+                        <textarea id="storage_instructions" name="storage_instructions" placeholder="How to store this medication"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Create Tablet & Generate QR Code</button>
+                </form>
+            </div>
+            
+            <div class="qr-section">
+                <h2 class="section-title">Generated QR Code</h2>
+                
+                <div class="qr-display" id="qrDisplay">
+                    <p>Fill out the form and submit to generate a QR code</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('tabletForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Clear previous messages
+            document.getElementById('messages').innerHTML = '';
+            
+            try {
+                // Create tablet
+                const response = await fetch('/api/tablets', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Show success message
+                    document.getElementById('messages').innerHTML = `
+                        <div class="success-message">
+                            ✅ Tablet created successfully! QR code generated.
+                        </div>
+                    `;
+                    
+                    // Generate QR code
+                    const qrResponse = await fetch(`/api/qrcode/${result.tablet_id}`);
+                    const qrData = await qrResponse.json();
+                    
+                    // Display QR code
+                    document.getElementById('qrDisplay').innerHTML = `
+                        <img src="${qrData.qr_code}" alt="QR Code" class="qr-code">
+                        <div class="tablet-info">
+                            <h3>${qrData.tablet_info.name}</h3>
+                            <p><strong>Manufacturer:</strong> ${qrData.tablet_info.manufacturer}</p>
+                            <p><strong>Batch:</strong> ${qrData.tablet_info.batch_number}</p>
+                            <p><strong>Expires:</strong> ${qrData.tablet_info.expiry_date}</p>
+                            <p><strong>Scan URL:</strong><br><small>${qrData.qr_data}</small></p>
+                            <button onclick="downloadQR('${qrData.qr_code}', '${qrData.tablet_info.name}_${qrData.tablet_info.batch_number}.png')" class="btn" style="margin-top: 10px; padding: 8px 16px; font-size: 14px;">
+                                Download QR Code
+                            </button>
+                        </div>
+                    `;
+                    
+                    // Reset form
+                    this.reset();
+                } else {
+                    document.getElementById('messages').innerHTML = `
+                        <div class="error-message">
+                            ❌ Error: ${result.error}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('messages').innerHTML = `
+                    <div class="error-message">
+                        ❌ Error: ${error.message}
+                    </div>
+                `;
+            }
+        });
+        
+        function downloadQR(dataUrl, filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = dataUrl;
+            link.click();
+        }
+    </script>
+</body>
+</html>
