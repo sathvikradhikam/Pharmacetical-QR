@@ -113,15 +113,30 @@ http://localhost:5000
 
 ---
 
-## 🏗️ Project Architecture
+User Device (Browser)
+↓
+Flask Web Application (PythonAnywhere)
+↓
+┌───────────────────────────────┐
+│ Routes & API Endpoints        │
+│ - / (Home)                    │
+│ - /api/tablets (POST)         │
+│ - /api/qrcode/<id>            │
+│ - /info/<id>                  │
+└───────────────────────────────┘
+↓
+┌───────────────────────────────┐
+│ Business Logic                │
+│ - Form validation             │
+│ - QR code generation          │
+│ - Data retrieval              │
+└───────────────────────────────┘
+↓
+┌───────────────────────────────┐
+│ SQLite Database               │
+│ - tablets.db                  │
+└───────────────────────────────┘
 
-```mermaid
-graph TD
-    A[User Device<br/>(Browser / Phone)] --> B[Flask Web App<br/>(PythonAnywhere)]
-    B --> C[Routes & Endpoints<br/>• / (Home)<br/>• POST /create<br/>• /qrcode/<id><br/>• /info/<id>]
-    C --> D[Business Logic<br/>• Form Validation<br/>• QR Generation<br/>• Data Storage/Retrieval]
-    D --> E[SQLite Database<br/>tablets.db]
-```
 📂 Project Structure
 Pharmacetical-QR/
 ├── app.py                 # Main Flask application
